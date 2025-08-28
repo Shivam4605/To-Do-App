@@ -48,8 +48,8 @@ lib/
 
 ### 1️⃣ Clone the Repository
 ```bash
-git clone https://github.com/your-username/taskly.git
-cd taskly
+git clone https://github.com/Shivam4605/To-Do-App.git
+
 
 🎯 Learning Outcomes
 
