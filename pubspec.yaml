@@ -1,0 +1,35 @@
+name: list_view
+description: "A new Flutter project."
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: ^3.7.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_svg: ^2.0.16
+  lottie: ^3.3.1
+  flutter_launcher_icons: ^0.14.4
+  google_fonts: ^6.3.0
+  intl: ^0.20.2
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/json_lottie_animation/Task Done.json
+    - assets/images/image5.svg
+    - assets/images/3696901.png
+    - assets/images/colorful-todo-list-illustration_1308-172724.avif
+    - assets/images/to-do-list-icon-vector.jpg
+    - assets/images/premium_photo-1681487870238-4a2dfddc6bcb.jpeg
+    - assets/images/keepimage.jpg
+  
+   
