@@ -1,0 +1,1 @@
+ C:\\flutter_course\\assingments\\list_view\\.dart_tool\\flutter_build\\599b92ea1f021e088cbba04d1fa6bbfb\\native_assets.json: 
