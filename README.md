@@ -7,6 +7,9 @@
 
 ![image alt](https://github.com/Shivam4605/To-Do-App/blob/ab219fab3c2d9269b169126d689fc0c6328e7405/Screenshot%202025-08-16%20195151.png)
 
+[Demo Video](https://github.com/Shivam4605/To-Do-App/blob/main/Screen%20Recording%202025-08-22%20132807.mp4)
+
+
 Taskly is a simple and minimal **Flutter To-Do application** that helps you organize your daily tasks.  
 It demonstrates the use of **CRUD operations** (Create, Read, Update, Delete) in Flutter with a clean and user-friendly UI.  
 
