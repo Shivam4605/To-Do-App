@@ -49,6 +49,7 @@ class _TodoState extends State with SingleTickerProviderStateMixin {
       tasklist.add(todo);
     }
     log("in List : $element");
+    log("in for loop : $iscompletedcheckbox");
     setState(() {});
   }
 
@@ -64,6 +65,7 @@ class _TodoState extends State with SingleTickerProviderStateMixin {
         obj.description = descriptiontextEditingController.text;
         obj.iscompletedcheckbox = iscompletedcheckbox;
         HelperDatabase().updatedata(obj.updateTomap());
+        log("in edit check box : $iscompletedcheckbox");
       } else {
         var newTodo = Todomodel(
           date: datetextEditingController.text,
@@ -73,6 +75,7 @@ class _TodoState extends State with SingleTickerProviderStateMixin {
         );
         tasklist.add(newTodo);
         HelperDatabase().insertData(newTodo.insertTomap());
+        log("insert check box : $iscompletedcheckbox");
       }
       clearController();
       Navigator.of(context).pop();
@@ -459,13 +462,18 @@ class _TodoState extends State with SingleTickerProviderStateMixin {
                                   onChanged: (selected) async {
                                     tasklist[index].iscompletedcheckbox =
                                         selected;
+                                    log("selected : $selected");
                                     await HelperDatabase().updatedata(
                                       tasklist[index].updateTomap(),
                                     );
                                     setState(() {});
                                     log(
+                                      "in task list : ${tasklist[index].iscompletedcheckbox}",
+                                    );
+                                    log(
                                       "[log] Checkbox updated in DB => ${tasklist[index].updateTomap()}",
                                     );
+                                    log("IN check Box : $iscompletedcheckbox");
                                   },
                                   colorConfig:
                                       MSHColorConfig.fromCheckedUncheckedDisabled(
