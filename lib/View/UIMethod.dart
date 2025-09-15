@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-class Uimethod {
+class ContainerolorMethod {
   // this method is used to return the colors of containers
   Color containercolors(int checkcontainerindex) {
     if (checkcontainerindex % 4 == 0) {
