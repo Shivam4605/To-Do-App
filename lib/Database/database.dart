@@ -24,6 +24,7 @@ class HelperDatabase {
   }
 
   // this method is used to Fetch the Data into the Database
+  //getdata()
   Future<List<Map>> getTodoData() async {
     Database localDB = await createDB();
     List<Map> list = await localDB.query("todoinfo");
