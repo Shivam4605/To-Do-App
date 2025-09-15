@@ -473,7 +473,6 @@ class _TodoState extends State with SingleTickerProviderStateMixin {
                                     log(
                                       "[log] Checkbox updated in DB => ${tasklist[index].updateTomap()}",
                                     );
-                                    log("IN check Box : $iscompletedcheckbox");
                                   },
                                   colorConfig:
                                       MSHColorConfig.fromCheckedUncheckedDisabled(
