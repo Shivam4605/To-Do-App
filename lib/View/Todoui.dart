@@ -25,6 +25,8 @@ class _TodoState extends State with SingleTickerProviderStateMixin {
       TextEditingController();
   TextEditingController datetextEditingController = TextEditingController();
 
+  ContainerolorMethod containerolorMethod = ContainerolorMethod();
+
   @override
   void initState() {
     super.initState();
@@ -345,7 +347,7 @@ class _TodoState extends State with SingleTickerProviderStateMixin {
                         offset: Offset(0, 2),
                       ),
                     ],
-                    color: ContainerolorMethod().containercolors(index),
+                    color: containerolorMethod.containercolors(index),
                     borderRadius: BorderRadius.all(Radius.circular(10)),
                   ),
                   child: Column(
