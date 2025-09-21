@@ -52,12 +52,13 @@ class _CompletedTaskPageState extends State<CompletedTaskPage> {
         ),
       ),
       body: ListView.builder(
+        shrinkWrap: true,
         itemCount: widget.list.length,
         itemBuilder: (context, index) {
           return Padding(
             padding: EdgeInsets.only(left: 15, right: 15, top: 20),
             child: Container(
-              height: 180,
+              height: 190,
               width: double.infinity,
               decoration: BoxDecoration(
                 boxShadow: [
@@ -185,14 +186,8 @@ class _CompletedTaskPageState extends State<CompletedTaskPage> {
                                 await HelperDatabase().updatedata(
                                   widget.list[index].updateTomap(),
                                 );
-                                setState(() {});
-                                log(
-                                  "in task list : ${widget.list[index].iscompletedcheckbox}",
-                                );
-                                log(
-                                  "[log] Checkbox updated in DB => ${widget.list[index].updateTomap()}",
-                                );
                                 widget.onUpdate();
+                                setState(() {});
                               },
                               colorConfig:
                                   MSHColorConfig.fromCheckedUncheckedDisabled(
@@ -200,32 +195,7 @@ class _CompletedTaskPageState extends State<CompletedTaskPage> {
                                     uncheckedColor: Colors.grey,
                                   ),
                             ),
-                            SizedBox(width: 8),
-                            GestureDetector(
-                              onTap: () {},
-                              child: SizedBox(
-                                height: 22,
-                                width: 22,
-                                child: Icon(
-                                  Icons.edit,
-                                  size: 19,
-                                  color: const Color(0xFF008B94),
-                                ),
-                              ),
-                            ),
-                            SizedBox(width: 15),
-                            GestureDetector(
-                              onTap: () {},
-                              child: SizedBox(
-                                height: 22,
-                                width: 22,
-                                child: Icon(
-                                  Icons.delete_outline_outlined,
-                                  size: 20,
-                                  color: const Color(0xFF008B94),
-                                ),
-                              ),
-                            ),
+                            SizedBox(width: 5),
                           ],
                         ),
                       ],

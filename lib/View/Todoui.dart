@@ -335,11 +335,12 @@ class _TodoState extends State with SingleTickerProviderStateMixin {
               children: [
                 GestureDetector(
                   onTap: () {
+                    //this variable [completed] return the instance of the TodoModel class
                     final completed =
-                        tasklist
-                            .where((list) => list.iscompletedcheckbox)
-                            .toList();
-
+                        tasklist.where((list) {
+                          return list.iscompletedcheckbox;
+                        }).toList();
+                    log("completed : $completed");
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (context) {
@@ -404,7 +405,7 @@ class _TodoState extends State with SingleTickerProviderStateMixin {
               Padding(
                 padding: EdgeInsets.only(left: 15, right: 15, top: 20),
                 child: Container(
-                  height: 180,
+                  height: 190,
                   width: double.infinity,
                   decoration: BoxDecoration(
                     boxShadow: [
