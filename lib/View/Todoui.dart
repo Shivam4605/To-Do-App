@@ -5,7 +5,7 @@ import 'package:intl/intl.dart';
 import 'package:msh_checkbox/msh_checkbox.dart';
 import 'package:todo_app/Database/database.dart';
 import 'package:todo_app/Model/TodoModel.dart';
-import 'package:todo_app/View/UIMethod.dart';
+import 'package:todo_app/View/completed_task_page.dart';
 
 class Todo extends StatefulWidget {
   const Todo({super.key});
@@ -25,7 +25,19 @@ class _TodoState extends State with SingleTickerProviderStateMixin {
       TextEditingController();
   TextEditingController datetextEditingController = TextEditingController();
 
-  ContainerolorMethod containerolorMethod = ContainerolorMethod();
+  Color containercolors(int checkcontainerindex) {
+    if (checkcontainerindex % 4 == 0) {
+      return Color(0xFFFAE8E8);
+    } else if (checkcontainerindex % 4 == 1) {
+      return Color(0xFFE8EDFA);
+    } else if (checkcontainerindex % 4 == 2) {
+      return Color(0xFFFAF9E8);
+    } else if (checkcontainerindex % 4 == 3) {
+      return Color(0xFFFAE8FA);
+    } else {
+      return Color(0xFFFAE8E8);
+    }
+  }
 
   @override
   void initState() {
@@ -322,7 +334,68 @@ class _TodoState extends State with SingleTickerProviderStateMixin {
                 fontSize: 26,
               ),
             ),
-            SizedBox(width: 70),
+            SizedBox(width: 50),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    final completed =
+                        tasklist
+                            .where((list) => list.iscompletedcheckbox)
+                            .toList();
+
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return CompletedTaskPage(
+                            list: completed,
+                            onUpdate: () {
+                              setState(() {});
+                            },
+                          );
+                        },
+                      ),
+                    );
+                  },
+                  child: Container(
+                    height: 40,
+                    width: 145,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          blurStyle: BlurStyle.outer,
+                          color: Colors.grey,
+                          blurRadius: 2,
+                        ),
+                      ],
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.black26,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Completed Task",
+                          style: GoogleFonts.quicksand(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 15,
+                          ),
+                        ),
+                        SizedBox(width: 5),
+                        Icon(
+                          Icons.arrow_forward_ios_outlined,
+                          size: 12,
+                          color: Colors.white,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ],
         ),
       ),
@@ -347,7 +420,7 @@ class _TodoState extends State with SingleTickerProviderStateMixin {
                         offset: Offset(0, 2),
                       ),
                     ],
-                    color: containerolorMethod.containercolors(index),
+                    color: containercolors(index),
                     borderRadius: BorderRadius.all(Radius.circular(10)),
                   ),
                   child: Column(
