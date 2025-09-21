@@ -36,6 +36,21 @@ class _CompletedTaskPageState extends State<CompletedTaskPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: const Color(0xFF02A7B1),
+        title: Row(
+          children: [
+            Text(
+              "Completed Task",
+              style: GoogleFonts.quicksand(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 22,
+              ),
+            ),
+          ],
+        ),
+      ),
       body: ListView.builder(
         itemCount: widget.list.length,
         itemBuilder: (context, index) {
