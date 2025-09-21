@@ -19,7 +19,6 @@ class _TodoState extends State with SingleTickerProviderStateMixin {
   bool iscompletedcheckbox = false;
 
   late AnimationController bottomSheetBarAnimation;
-
   TextEditingController titletextEditingController = TextEditingController();
   TextEditingController descriptiontextEditingController =
       TextEditingController();
@@ -68,7 +67,6 @@ class _TodoState extends State with SingleTickerProviderStateMixin {
   }
 
   // this is used to add the user data into the card's after click into the submit button
-
   void submitbutton(bool isEdit, [Todomodel? obj]) {
     if (titletextEditingController.text.trim().isNotEmpty &&
         descriptiontextEditingController.text.trim().isNotEmpty &&
@@ -98,7 +96,6 @@ class _TodoState extends State with SingleTickerProviderStateMixin {
   }
 
   // this method is used to clear the text controller after date inserted
-
   void clearController() {
     titletextEditingController.clear();
     descriptiontextEditingController.clear();
@@ -106,7 +103,6 @@ class _TodoState extends State with SingleTickerProviderStateMixin {
   }
 
   // this Method is the floating Action Button is Tap then Call the showBottomsheetBar Method
-
   Widget floatingAction() {
     return FloatingActionButton.extended(
       backgroundColor: const Color(0xFF008B94),
@@ -130,7 +126,6 @@ class _TodoState extends State with SingleTickerProviderStateMixin {
   }
 
   //  this method is used to show the Bottom sheet after click the floating action button
-
   void showBottomSheetBar(bool isEdit, [Todomodel? obj]) {
     showModalBottomSheet(
       transitionAnimationController: bottomSheetBarAnimation,
