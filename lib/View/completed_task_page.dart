@@ -17,7 +17,7 @@ class CompletedTaskPage extends StatefulWidget {
   @override
   State<CompletedTaskPage> createState() => _CompletedTaskPageState();
 }
-
+  
 class _CompletedTaskPageState extends State<CompletedTaskPage> {
   Color containercolors(int checkcontainerindex) {
     if (checkcontainerindex % 4 == 0) {
