@@ -17,7 +17,7 @@ class CompletedTaskPage extends StatefulWidget {
   @override
   State<CompletedTaskPage> createState() => _CompletedTaskPageState();
 }
-  
+
 class _CompletedTaskPageState extends State<CompletedTaskPage> {
   Color containercolors(int checkcontainerindex) {
     if (checkcontainerindex % 4 == 0) {
@@ -53,6 +53,7 @@ class _CompletedTaskPageState extends State<CompletedTaskPage> {
       ),
       body: ListView.builder(
         shrinkWrap: true,
+        physics: BouncingScrollPhysics(),
         itemCount: widget.list.length,
         itemBuilder: (context, index) {
           return Padding(

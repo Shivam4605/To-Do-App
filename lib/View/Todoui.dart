@@ -17,6 +17,7 @@ class Todo extends StatefulWidget {
 class _TodoState extends State with SingleTickerProviderStateMixin {
   List<Todomodel> tasklist = [];
   bool iscompletedcheckbox = false;
+  int selectedindex = 0;
 
   late AnimationController bottomSheetBarAnimation;
   TextEditingController titletextEditingController = TextEditingController();
@@ -336,16 +337,21 @@ class _TodoState extends State with SingleTickerProviderStateMixin {
                 GestureDetector(
                   onTap: () {
                     //this variable [completed] return the instance of the TodoModel class
-                    final completed =
-                        tasklist.where((list) {
-                          return list.iscompletedcheckbox;
-                        }).toList();
-                    log("completed : $completed");
+
+                    List<Todomodel> completedtask = [];
+                    for (int i = 0; i < tasklist.length; i++) {
+                      if (tasklist[i].iscompletedcheckbox) {
+                        completedtask.add(tasklist[i]);
+                        log("completed : $completedtask");
+                      }
+                      setState(() {});
+                    }
+
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (context) {
                           return CompletedTaskPage(
-                            list: completed,
+                            list: completedtask,
                             onUpdate: () {
                               setState(() {});
                             },
@@ -400,6 +406,7 @@ class _TodoState extends State with SingleTickerProviderStateMixin {
         itemCount: tasklist.length,
         shrinkWrap: true,
         itemBuilder: (BuildContext context, int index) {
+          selectedindex = index;
           return Column(
             children: [
               Padding(
