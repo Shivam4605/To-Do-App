@@ -7,7 +7,9 @@ import 'package:todo_app/Model/TodoModel.dart';
 
 class CompletedTaskPage extends StatefulWidget {
   final List<Todomodel> list;
-  final VoidCallback onUpdate;
+
+  ///this function is used for the Rebuild the UI for parent Widgets[onUpdate]
+  final onUpdate;
   const CompletedTaskPage({
     super.key,
     required this.list,

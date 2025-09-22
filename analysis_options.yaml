@@ -3,3 +3,4 @@ analyzer:
   errors:
     file_names: ignore
     deprecated_member_use: ignore
+    prefer_typing_uninitialized_variables: ignore
