@@ -9,7 +9,7 @@ class CompletedTaskPage extends StatefulWidget {
   final List<Todomodel> list;
 
   ///this function is used for the Rebuild the UI for parent Widgets[onUpdate]
-  final onUpdate;
+  final VoidCallback onUpdate;
   const CompletedTaskPage({
     super.key,
     required this.list,
