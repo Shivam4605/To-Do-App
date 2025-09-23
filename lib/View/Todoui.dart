@@ -344,7 +344,6 @@ class _TodoState extends State with SingleTickerProviderStateMixin {
                       }
                       setState(() {});
                     }
-
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (context) {
