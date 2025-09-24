@@ -348,7 +348,7 @@ class _TodoState extends State with SingleTickerProviderStateMixin {
                       MaterialPageRoute(
                         builder: (context) {
                           return CompletedTaskPage(
-                            list: completedtask,
+                            completedtask: completedtask,
                             onUpdate: () {
                               setState(() {});
                             },
