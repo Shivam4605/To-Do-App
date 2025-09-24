@@ -17,10 +17,17 @@ class CompletedTaskPage extends StatefulWidget {
   });
 
   @override
-  State<CompletedTaskPage> createState() => _CompletedTaskPageState();
+  State<CompletedTaskPage> createState() {
+    return _CompletedTaskPageState(list, onUpdate);
+  }
 }
 
 class _CompletedTaskPageState extends State<CompletedTaskPage> {
+  final List<Todomodel> list;
+  final VoidCallback onUpdate;
+
+  _CompletedTaskPageState(this.list, this.onUpdate);
+
   Color containercolors(int checkcontainerindex) {
     if (checkcontainerindex % 4 == 0) {
       return Color(0xFFFAE8E8);
@@ -56,7 +63,7 @@ class _CompletedTaskPageState extends State<CompletedTaskPage> {
       body: ListView.builder(
         shrinkWrap: true,
         physics: BouncingScrollPhysics(),
-        itemCount: widget.list.length,
+        itemCount: list.length,
         itemBuilder: (context, index) {
           return Padding(
             padding: EdgeInsets.only(left: 15, right: 15, top: 20),
@@ -111,13 +118,13 @@ class _CompletedTaskPageState extends State<CompletedTaskPage> {
                               ),
                               SizedBox(height: 15),
                               Text(
-                                widget.list[index].iscompletedcheckbox
+                                list[index].iscompletedcheckbox
                                     ? "Completed"
                                     : "Pending",
                                 style: GoogleFonts.poppins(
                                   fontWeight: FontWeight.w500,
                                   color:
-                                      widget.list[index].iscompletedcheckbox
+                                      list[index].iscompletedcheckbox
                                           ? Colors.green
                                           : const Color.fromARGB(
                                             255,
@@ -138,7 +145,7 @@ class _CompletedTaskPageState extends State<CompletedTaskPage> {
                               children: [
                                 SizedBox(height: 5),
                                 Text(
-                                  widget.list[index].title,
+                                  list[index].title,
                                   style: GoogleFonts.quicksand(
                                     color: Colors.black,
                                     fontWeight: FontWeight.bold,
@@ -149,7 +156,7 @@ class _CompletedTaskPageState extends State<CompletedTaskPage> {
                                 Column(
                                   children: [
                                     Text(
-                                      widget.list[index].description,
+                                      list[index].description,
                                       style: GoogleFonts.quicksand(
                                         color: Colors.black,
                                         fontSize: 14,
@@ -170,7 +177,7 @@ class _CompletedTaskPageState extends State<CompletedTaskPage> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          widget.list[index].date,
+                          list[index].date,
                           style: GoogleFonts.quicksand(
                             color: Colors.black,
                             fontSize: 12,
@@ -181,15 +188,14 @@ class _CompletedTaskPageState extends State<CompletedTaskPage> {
                           children: [
                             MSHCheckbox(
                               size: 20,
-                              value: widget.list[index].iscompletedcheckbox,
+                              value: list[index].iscompletedcheckbox,
                               onChanged: (selected) async {
-                                widget.list[index].iscompletedcheckbox =
-                                    selected;
+                                list[index].iscompletedcheckbox = selected;
                                 log("selected : $selected");
                                 await HelperDatabase().updatedata(
-                                  widget.list[index].updateTomap(),
+                                  list[index].updateTomap(),
                                 );
-                                widget.onUpdate();
+                                onUpdate();
                                 setState(() {});
                               },
                               colorConfig:

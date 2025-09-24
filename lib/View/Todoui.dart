@@ -337,9 +337,9 @@ class _TodoState extends State with SingleTickerProviderStateMixin {
                 GestureDetector(
                   onTap: () {
                     List<Todomodel> completedtask = [];
-                    for (int index = 0; index < tasklist.length; index++) {
-                      if (tasklist[index].iscompletedcheckbox) {
-                        completedtask.add(tasklist[index]);
+                    for (int i = 0; i < tasklist.length; i++) {
+                      if (tasklist[i].iscompletedcheckbox) {
+                        completedtask.add(tasklist[i]);
                         log("completed : $completedtask");
                       }
                       setState(() {});
