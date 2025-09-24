@@ -6,27 +6,27 @@ import 'package:todo_app/Database/database.dart';
 import 'package:todo_app/Model/TodoModel.dart';
 
 class CompletedTaskPage extends StatefulWidget {
-  final List<Todomodel> list;
+  final List<Todomodel> completedtask;
 
   ///this function is used for the Rebuild the UI for parent Widgets[onUpdate]
   final VoidCallback onUpdate;
   const CompletedTaskPage({
     super.key,
-    required this.list,
+    required this.completedtask,
     required this.onUpdate,
   });
 
   @override
   State<CompletedTaskPage> createState() {
-    return _CompletedTaskPageState(list, onUpdate);
+    return _CompletedTaskPageState(completedtask, onUpdate);
   }
 }
 
 class _CompletedTaskPageState extends State<CompletedTaskPage> {
-  final List<Todomodel> list;
+  final List<Todomodel> completedtask;
   final VoidCallback onUpdate;
 
-  _CompletedTaskPageState(this.list, this.onUpdate);
+  _CompletedTaskPageState(this.completedtask, this.onUpdate);
 
   Color containercolors(int checkcontainerindex) {
     if (checkcontainerindex % 4 == 0) {
@@ -63,7 +63,7 @@ class _CompletedTaskPageState extends State<CompletedTaskPage> {
       body: ListView.builder(
         shrinkWrap: true,
         physics: BouncingScrollPhysics(),
-        itemCount: list.length,
+        itemCount: completedtask.length,
         itemBuilder: (context, index) {
           return Padding(
             padding: EdgeInsets.only(left: 15, right: 15, top: 20),
@@ -118,13 +118,13 @@ class _CompletedTaskPageState extends State<CompletedTaskPage> {
                               ),
                               SizedBox(height: 15),
                               Text(
-                                list[index].iscompletedcheckbox
+                                completedtask[index].iscompletedcheckbox
                                     ? "Completed"
                                     : "Pending",
                                 style: GoogleFonts.poppins(
                                   fontWeight: FontWeight.w500,
                                   color:
-                                      list[index].iscompletedcheckbox
+                                      completedtask[index].iscompletedcheckbox
                                           ? Colors.green
                                           : const Color.fromARGB(
                                             255,
@@ -145,7 +145,7 @@ class _CompletedTaskPageState extends State<CompletedTaskPage> {
                               children: [
                                 SizedBox(height: 5),
                                 Text(
-                                  list[index].title,
+                                  completedtask[index].title,
                                   style: GoogleFonts.quicksand(
                                     color: Colors.black,
                                     fontWeight: FontWeight.bold,
@@ -156,7 +156,7 @@ class _CompletedTaskPageState extends State<CompletedTaskPage> {
                                 Column(
                                   children: [
                                     Text(
-                                      list[index].description,
+                                      completedtask[index].description,
                                       style: GoogleFonts.quicksand(
                                         color: Colors.black,
                                         fontSize: 14,
@@ -177,7 +177,7 @@ class _CompletedTaskPageState extends State<CompletedTaskPage> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          list[index].date,
+                          completedtask[index].date,
                           style: GoogleFonts.quicksand(
                             color: Colors.black,
                             fontSize: 12,
@@ -188,12 +188,13 @@ class _CompletedTaskPageState extends State<CompletedTaskPage> {
                           children: [
                             MSHCheckbox(
                               size: 20,
-                              value: list[index].iscompletedcheckbox,
+                              value: completedtask[index].iscompletedcheckbox,
                               onChanged: (selected) async {
-                                list[index].iscompletedcheckbox = selected;
+                                completedtask[index].iscompletedcheckbox =
+                                    selected;
                                 log("selected : $selected");
                                 await HelperDatabase().updatedata(
-                                  list[index].updateTomap(),
+                                  completedtask[index].updateTomap(),
                                 );
                                 onUpdate();
                                 setState(() {});
