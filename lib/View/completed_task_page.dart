@@ -18,15 +18,20 @@ class CompletedTaskPage extends StatefulWidget {
 
   @override
   State<CompletedTaskPage> createState() {
-    return _CompletedTaskPageState(completedtask, onUpdate);
+    return _CompletedTaskPageState();
   }
 }
 
 class _CompletedTaskPageState extends State<CompletedTaskPage> {
-  final List<Todomodel> completedtask;
-  final VoidCallback onUpdate;
+  late List<Todomodel> completedtask;
+  late VoidCallback onUpdate;
 
-  _CompletedTaskPageState(this.completedtask, this.onUpdate);
+  @override
+  void initState() {
+    completedtask = widget.completedtask;
+    onUpdate = widget.onUpdate;
+    super.initState();
+  }
 
   Color containercolors(int checkcontainerindex) {
     if (checkcontainerindex % 4 == 0) {
