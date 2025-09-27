@@ -9,13 +9,21 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  google_fonts: ^6.3.1
+  google_fonts: ^6.3.2
   intl: ^0.20.2
   path: ^1.9.1
   roundcheckbox: ^2.0.5
   sqflite: ^2.4.2
   msh_checkbox: ^2.0.1
   flutter_launcher_icons: ^0.14.4
+  firebase_auth: ^6.1.0
+  firebase_core: ^4.1.1
+  lottie: ^3.3.1
+  flutter_native_splash: ^2.4.0
+  rename: ^3.0.2
+
+flutter_native_splash:
+  color: "#008B94"
 
 flutter_icons:
   android: true
@@ -38,3 +46,4 @@ flutter:
     - assets/images/premium_photo-1681487870238-4a2dfddc6bcb.jpeg
     - assets/images/keepimage.jpg
     - assets/images/appbarimage.png
+    - assets/Lotties_Animation/Task completed check.json

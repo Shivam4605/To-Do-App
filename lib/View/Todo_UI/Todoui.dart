@@ -5,7 +5,7 @@ import 'package:intl/intl.dart';
 import 'package:msh_checkbox/msh_checkbox.dart';
 import 'package:todo_app/Database/database.dart';
 import 'package:todo_app/Model/TodoModel.dart';
-import 'package:todo_app/View/completed_task_page.dart';
+import 'package:todo_app/View/Todo_UI/completed_task_page.dart';
 
 class Todo extends StatefulWidget {
   const Todo({super.key});
