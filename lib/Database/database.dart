@@ -32,7 +32,7 @@ class HelperDatabase {
   }
 
   // this method is used to insert the data into the Database
-  ///[insertData]
+  ///[insertData] for
   void insertData(Map<String, dynamic> obj) async {
     Database localDB = await createDB();
     await localDB.insert(
