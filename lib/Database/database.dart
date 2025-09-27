@@ -24,7 +24,7 @@ class HelperDatabase {
   }
 
   // this method is used to Fetch the Data into the Database
-  //getdata()
+  ///[getdata]
   Future<List<Map>> getTodoData() async {
     Database localDB = await createDB();
     List<Map> list = await localDB.query("todoinfo");
@@ -32,6 +32,7 @@ class HelperDatabase {
   }
 
   // this method is used to insert the data into the Database
+  ///[insertData]
   void insertData(Map<String, dynamic> obj) async {
     Database localDB = await createDB();
     await localDB.insert(
@@ -42,6 +43,7 @@ class HelperDatabase {
   }
 
   // this method is used to update the Data into the Database
+  ///[updatedata]
   Future<void> updatedata(Map<String, dynamic> obj) async {
     Database localDB = await createDB();
     await localDB.update(
@@ -53,6 +55,7 @@ class HelperDatabase {
   }
 
   // this method is used to delete the data into the Database
+  ///[deletedata]
   Future<void> deletedata(int id) async {
     Database localDB = await createDB();
     await localDB.delete("todoinfo", where: "id=?", whereArgs: [id]);
