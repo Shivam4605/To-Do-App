@@ -148,7 +148,9 @@ class _LoginScreenState extends State<LoginScreen> {
                             "Login Successfully",
                             bgcolor: Colors.green,
                           );
-                          log("UserCredential : $userCredentialobj");
+                          log(
+                            "UserCredential : ${userCredentialobj.user!.uid}",
+                          );
                           Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(

@@ -1,10 +1,12 @@
 import 'dart:developer';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:msh_checkbox/msh_checkbox.dart';
 import 'package:todo_app/Database/database.dart';
 import 'package:todo_app/Model/TodoModel.dart';
+import 'package:todo_app/View/Login_Module/login_screen.dart';
 import 'package:todo_app/View/Todo_UI/completed_task_page.dart';
 
 class Todo extends StatefulWidget {
@@ -18,6 +20,9 @@ class _TodoState extends State with SingleTickerProviderStateMixin {
   List<Todomodel> tasklist = [];
   bool iscompletedcheckbox = false;
   int selectedindex = 0;
+  int dropdownvalue = 0;
+
+  List dropdownButtonlist = ["Completed Task", "Pending Task", "Sign Out"];
 
   late AnimationController bottomSheetBarAnimation;
   TextEditingController titletextEditingController = TextEditingController();
@@ -331,73 +336,75 @@ class _TodoState extends State with SingleTickerProviderStateMixin {
                 fontSize: 26,
               ),
             ),
-            SizedBox(width: 50),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    List<Todomodel> completedtask = [];
-                    for (int i = 0; i < tasklist.length; i++) {
-                      if (tasklist[i].iscompletedcheckbox) {
-                        completedtask.add(tasklist[i]);
-                        log("completed : $completedtask");
-                      }
-                      setState(() {});
-                    }
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) {
-                          return CompletedTaskPage(
-                            completedtask: completedtask,
-                            onUpdate: () {
-                              setState(() {});
-                            },
-                          );
-                        },
-                      ),
-                    );
-                  },
-                  child: Container(
-                    height: 40,
-                    width: 145,
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                          blurStyle: BlurStyle.outer,
-                          color: Colors.grey,
-                          blurRadius: 2,
-                        ),
-                      ],
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.black26,
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Completed Task",
-                          style: GoogleFonts.quicksand(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 15,
-                          ),
-                        ),
-                        SizedBox(width: 5),
-                        Icon(
-                          Icons.arrow_forward_ios_outlined,
-                          size: 12,
-                          color: Colors.white,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
           ],
         ),
+        actions: [
+          DropdownButton(
+            borderRadius: BorderRadius.circular(15),
+            underline: SizedBox(),
+            icon: Icon(Icons.more_vert, color: Colors.white),
+            items: [
+              DropdownMenuItem(
+                value: 0,
+                child: Text(
+                  "Completed Task",
+                  style: GoogleFonts.poppins(
+                    color: Colors.black,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 15,
+                  ),
+                ),
+              ),
+              DropdownMenuItem(
+                value: 1,
+                child: Text(
+                  "Sign Out",
+                  style: GoogleFonts.poppins(
+                    color: Colors.black,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 15,
+                  ),
+                ),
+              ),
+            ],
+            onChanged: (index) {
+              dropdownvalue = index as int;
+              setState(() {});
+              if (index == 0) {
+                List<Todomodel> completedtask = [];
+                for (int i = 0; i < tasklist.length; i++) {
+                  if (tasklist[i].iscompletedcheckbox) {
+                    completedtask.add(tasklist[i]);
+                    log("completed : $completedtask");
+                  }
+                  setState(() {});
+                }
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return CompletedTaskPage(
+                        completedtask: completedtask,
+                        onUpdate: () {
+                          setState(() {});
+                        },
+                      );
+                    },
+                  ),
+                );
+              } else if (index == 1) {
+                FirebaseAuth.instance.signOut();
+                Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return LoginScreen();
+                    },
+                  ),
+                  (route) => false,
+                );
+              }
+            },
+          ),
+        ],
       ),
       body: ListView.builder(
         physics: BouncingScrollPhysics(),
