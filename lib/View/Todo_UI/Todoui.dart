@@ -234,6 +234,7 @@ class _TodoState extends State with SingleTickerProviderStateMixin {
                     ),
                     SizedBox(height: 2),
                     TextField(
+                      readOnly: true,
                       onTap: () async {
                         DateTime? pikdate = await showDatePicker(
                           context: context,
