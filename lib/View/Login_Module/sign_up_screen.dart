@@ -13,7 +13,7 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
-  final TextEditingController _emailtextEditingController =
+  final TextEditingController emailtextEditingController =
       TextEditingController();
   final TextEditingController _passwordtextEditingController =
       TextEditingController();
@@ -21,7 +21,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
   void clearController() {
-    _emailtextEditingController.clear();
+    emailtextEditingController.clear();
     _passwordtextEditingController.clear();
   }
 
@@ -77,7 +77,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 Padding(
                   padding: const EdgeInsets.only(left: 20, right: 20),
                   child: TextField(
-                    controller: _emailtextEditingController,
+                    controller: emailtextEditingController,
                     decoration: InputDecoration(
                       hintText: "Enter Your Email",
                       hintStyle: TextStyle(color: Colors.black),
@@ -133,14 +133,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   padding: const EdgeInsets.only(left: 20, right: 20),
                   child: GestureDetector(
                     onTap: () async {
-                      if (_emailtextEditingController.text.trim().isNotEmpty &&
+                      if (emailtextEditingController.text.trim().isNotEmpty &&
                           _passwordtextEditingController.text
                               .trim()
                               .isNotEmpty) {
                         try {
                           UserCredential userCredentialobj = await _firebaseAuth
                               .createUserWithEmailAndPassword(
-                                email: _emailtextEditingController.text,
+                                email: emailtextEditingController.text,
                                 password: _passwordtextEditingController.text,
                               );
                           CustomWidgets.showSnackBar(
